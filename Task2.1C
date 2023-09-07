@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue 3 Task 2.1C</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        #todoApp {
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+        .todo-item.completed {
+            text-decoration: line-through;
+            color: grey;
+        }
+        .todo-item button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="todoApp">
+        <h1>Task2.1C TODO APP</h1>
+        <input v-model="newTodo" @keyup.enter="addTodo" placeholder="Add a new task...">
+        <button @click="addTodo" style="background-color: #4CAF50; color: white;">Add</button>
+        <div class="todo-item" v-for="(todo, index) in todos" :key="index">
+            <span :class="{ completed: todo.completed }">{{ todo.text }}</span>
+            <div>
+                <button @click="toggleCompletion(index)" style="background-color: #f39c12; color: white;">Toggle Completion</button>
+                <button @click="deleteTodo(index)" style="background-color: #e74c3c; color: white;">Delete</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const todoApp = Vue.createApp({
+            data() {
+                return {
+                    newTodo: "",
+                    todos: []
+                };
+            },
+            methods: {
+                addTodo() {
+                    if (this.newTodo.trim() === '') return;
+                    this.todos.push({ text: this.newTodo, completed: false });
+                    this.newTodo = "";
+                },
+                toggleCompletion(index) {
+                    this.todos[index].completed = !this.todos[index].completed;
+                },
+                deleteTodo(index) {
+                    this.todos.splice(index, 1);
+                }
+            }
+        });
+        todoApp.mount('#todoApp');
+    </script>
+</body>
+</html>
