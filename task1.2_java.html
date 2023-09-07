@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Concepts Task 1.2</title>
+    <script>
+        // String Methods
+        const str = "Task, 1.2";
+        console.log(str.toUpperCase());
+        console.log(str.toLowerCase());
+        console.log(str.indexOf("Task1.2"));
+        console.log(str.slice(7, 12));
+        console.log(str.replace("Task1.2", "SIT120"));
+
+        // Number Methods
+        const num = 123.456;
+        console.log(num.toExponential());
+        console.log(num.toFixed(2));
+        console.log(num.toPrecision(5));
+        console.log(Math.round(num));
+        console.log(Math.floor(num));
+
+        // Array Methods
+        const arr = [1, 2, 3];
+        console.log(arr.join(", "));
+        console.log(arr.reverse());
+        console.log(arr.push(4));
+        console.log(arr.pop());
+        console.log(arr.slice(0, 2));
+
+        // Date Methods
+        const date = new Date();
+        console.log(date.getFullYear());
+        console.log(date.getMonth());
+        console.log(date.getDate());
+        console.log(date.getHours());
+        console.log(date.getMinutes());
+
+        // Function Methods
+        function greet(name) {
+            return "Hello, " + name;
+        }
+        console.log(greet.call(null, "Flynn"));
+        console.log(greet.apply(null, ["John"]));
+    </script>
+</head>
+<body>
+</body>
+</html>
