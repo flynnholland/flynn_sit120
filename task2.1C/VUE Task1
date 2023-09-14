@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue 3 Task 2.1</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- v-if, v-else -->
+    <p v-if="show">This is visible because 'show' is true.</p>
+    <p v-else>This is hidden because 'show' is true.</p>
+
+    <!-- v-show -->
+    <p v-show="show">This is using v-show and is visible.</p>
+
+    <!-- v-for -->
+    <ul>
+      <li v-for="item in items">{{ item }}</li>
+    </ul>
+
+    <!-- v-if -->
+    <ul>
+      <li v-for="item in items" v-if="item !== 'Banana'">{{ item }}</li>
+    </ul>
+  </div>
+
+  <script>
+    const App = {
+      data() {
+        return {
+          show: true,
+          items: ['Apple', 'Banana', 'Cherry']
+        };
+      }
+    };
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
