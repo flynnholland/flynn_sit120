@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GameHive</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ title }}</h1>
+    
+    <!-- Navigation -->
+    <button @click="navigateTo('homepage')">Home</button>
+    <button @click="navigateTo('gameStats')">Game Stats</button>
+    <button @click="navigateTo('leaderBoards')">Leaderboards</button>
+    <button @click="navigateTo('aboutUs')">About Us</button>
+    
+    <!-- rendering of pages -->
+    <div v-if="currentPage === 'homepage'">
+      <h2>Homepage</h2>
+      <!-- Homepage content -->
+    </div>
+
+    <div v-else-if="currentPage === 'gameStats'">
+      <h2>Game Stats</h2>
+      <p>User: {{ userName }}</p>
+      <p>Game: {{ gameName }}</p>
+      <p>Level: {{ userStats.level }}</p>
+      <p>Rank: {{ userStats.rank }}</p>
+      <p>Favorite Hero: {{ userStats.favoriteHero }}</p>
+      <!-- More stats here -->
+    </div>
+
+    <div v-else-if="currentPage === 'leaderBoards'">
+      <h2>Leaderboards</h2>
+      <!-- Leaderboard Input -->
+      <form @submit.prevent="updateLeaderboard">
+        <input v-model="newEntry.name" placeholder="Name">
+        <input v-model="newEntry.score" placeholder="Score" type="number">
+        <button type="submit">Add to Leaderboard</button>
+      </form>
+      <!-- Leaderboard Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in leaderboards">
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.score }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div v-else-if="currentPage === 'aboutUs'">
+      <h2>About Us</h2>
+      <!-- About us description here -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
